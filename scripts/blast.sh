@@ -1,7 +1,13 @@
 #!/bin/bash
 
+#File:           merge_pia.py
+#Author:         Ashley T. Sendell-Price
+#Date:           27.03.2024
+#Description:    ADD
+#Usage:          source run_blast.sh VERT
+
 #Set primer
-PRIMER=MZ
+PRIMER=$1
 
 #Make output directory (if doesnt exist)
 if [ ! -d "blast_files" ]
