@@ -1,9 +1,20 @@
+#!/usr/bin/env python
+
+"""
+File:           merge_pia.py
+Author:         Ashley T. Sendell-Price
+Date:           27.03.2024
+Description:    Takes output from multiple runs of PIA (https://github.com/Allaby-lab/PIA) 
+                and merges into a single tab delimited file with taxonomic information added
+                e.g. kingdom, superphylum, phylum etc. Taxonomic info sourced using taxaranks
+                tool from https://github.com/linzhi2013/taxonomy_ranks
+Usage:          python merge_pia.py PATH/TO/PIA/OUTPUT/DIRECTORY
+"""
+
+#Import required modules
 import pandas as pd
 import os
 import sys
-from taxonomy_ranks import TaxonomyRanks
-
-#Usage: python merge_pia.py PATH/TO/PIA/OUTPUT
 
 #Create a list of PIA "Summary_Basic.txt" files  
 keyword = '_Basic.txt'
@@ -28,7 +39,7 @@ for i in range(1,len(files)-1):
 df = df.fillna(0)
 df = df.rename(columns={"# ID": "taxa_ID"})
 
-# Add taxa rank info - using taxaranks tool from https://github.com/linzhi2013/taxonomy_ranks
+# Add taxonomic information
 df["taxa_ID"].to_csv('taxaIDs.txt', sep ='\t', index=False, header=False)
 os.system('taxaranks -i taxaIDs.txt -o taxa_info.txt')
 taxa = pd.read_csv('taxa_info.txt', sep='\t').rename(columns={"user_taxa": "taxa_ID"})
