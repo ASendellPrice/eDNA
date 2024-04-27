@@ -12,7 +12,7 @@ Usage:          python merge_pia.py PATH/TO/PIA/OUTPUT/DIRECTORY (requires blast
 #Import required modules
 import sys
 
-with open(sys.argv[1]), 'r') as f:
+with open((sys.argv[1]), 'r') as f:
     for line in f.readlines():
         if not "#" in line:
             if sys.argv[2] in line:
