@@ -25,3 +25,4 @@ do
     -max_target_seqs 500 -outfmt "6 std staxids" -num_threads 4 
 done
 
+conda deactivate 

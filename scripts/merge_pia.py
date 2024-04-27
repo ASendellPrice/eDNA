@@ -8,7 +8,7 @@ Description:    Takes output from multiple runs of PIA (https://github.com/Allab
                 and merges into a single tab delimited file with taxonomic information added
                 e.g. kingdom, superphylum, phylum etc. Taxonomic info sourced using taxaranks
                 tool from https://github.com/linzhi2013/taxonomy_ranks
-Usage:          python merge_pia.py PATH/TO/PIA/OUTPUT/DIRECTORY
+Usage:          python merge_pia.py PATH/TO/PIA/OUTPUT/DIRECTORY (requires blast_edna env)
 """
 
 #Import required modules
