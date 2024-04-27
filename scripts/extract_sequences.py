@@ -12,11 +12,8 @@ Usage:          python merge_pia.py PATH/TO/PIA/OUTPUT/DIRECTORY (requires blast
 #Import required modules
 import sys
 
-#
-file = "Clustered_Files/V_primer/V17-211123_S95_L001_all_seqs.fasta"
-ID = "10053"
-
-with open(sys.argv[1], 'r') as f:
+with open(sys.argv[1]), 'r') as f:
     for line in f.readlines():
-        if sys.argv[2] in line:
-            print(line)
+        if not "#" in line:
+            if sys.argv[2] in line:
+                print(line.split(sep = '\t')[0])
