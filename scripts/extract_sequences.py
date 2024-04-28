@@ -4,7 +4,7 @@ Author:         Ashley T. Sendell-Price
 Date:           27.03.2024
 Description:    ADD
                 Requires bioinfokit
-Usage:          python extract_sequences taxaID
+Usage:          python bin/eDNA/scripts/extract_sequences.py PIA_output FASTA taxaID
 """
 
 #Import required modules
@@ -18,9 +18,9 @@ with open(sys.argv[1], 'r') as f:
         #check not a header line
         if not "#" in line:
             #
-            if line.split(sep = '\t')[1] == sys.argv[2]:
+            if line.split(sep = '\t')[1] == sys.argv[3]:
                 sequenceID = line.split(sep = '\t')[0]
                 IDfile.writelines(sequenceID + '\n')
 
 # extract sequences based on sequence ID and region coordinates
-Fasta.extract_seq(file = FASTA, id="sequenceIDs.txt")
+Fasta.extract_seq(file = sys.argv[2], id="sequenceIDs.txt")
