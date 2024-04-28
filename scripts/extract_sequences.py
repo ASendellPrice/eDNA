@@ -4,7 +4,7 @@ Author:         Ashley T. Sendell-Price
 Date:           27.03.2024
 Description:    ADD
                 Requires bioinfokit
-Usage:          python bin/eDNA/scripts/extract_sequences.py PIA_output FASTA taxaID
+Usage:          python extract_sequences taxaID
 """
 
 #Import required modules
