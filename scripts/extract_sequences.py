@@ -7,20 +7,21 @@ Description:    Outputs sequences assigned to specified taxa ID into a fasta fil
 Usage:          python extract_sequences pia_output fasta taxaID:
 """
 
-#Import required modules
 import sys
-from bioinfokit.analys import Fasta
+import os
 
-#Create sequence ID list
-IDfile = open('sequenceIDs.txt', 'w')
+sequenceIDs = []
 with open(sys.argv[1], 'r') as f:
     for line in f.readlines():
-        #check not a header line
         if not "#" in line:
-            #If line 
-            if line.split(sep = '\t')[1] == sys.argv[3]:
+            if line.split(sep = '\t')[1] == sys.argv[3]:            
                 sequenceID = line.split(sep = '\t')[0]
-                IDfile.writelines(sequenceID + '\n')
+                with open(sys.argv[2], 'r') as fasta:
+                    for fasta_entry in fasta.readlines():
+                        if ">" in fasta_entry and sequenceID in fasta_entry:
+                                sequenceIDs.append(fasta_entry.strip().replace(">", "")) 
 
-# extract sequences based on sequence ID and region coordinates
-Fasta.extract_seq(file = sys.argv[2], id="sequenceIDs.txt")
+with open('sequenceIDs.txt', 'w') as outfile:
+    outfile.write("\n".join(sequenceIDs))
+
+os.system('seqtk subseq ' + sys.argv[2] + ' sequenceIDs.txt | grep -v "[subseq]" | grep "[subseq] > output.fasta')
