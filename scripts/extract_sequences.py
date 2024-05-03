@@ -24,4 +24,4 @@ with open(sys.argv[1], 'r') as f:
 with open('sequenceIDs.txt', 'w') as outfile:
     outfile.write("\n".join(sequenceIDs))
 
-os.system('seqtk subseq ' + sys.argv[2] + ' sequenceIDs.txt | grep -v "[subseq]" | grep "[subseq] > output.fasta')
+os.system('seqtk subseq ' + sys.argv[2] + ' sequenceIDs.txt | grep -v "[subseq]" > output.fasta')
